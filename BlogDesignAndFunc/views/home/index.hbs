@@ -1,0 +1,29 @@
+<div class="container body-content">
+    <div class="row">
+        {{#each articles}}
+            <div class="col-md-5">
+                <article>
+                    <header>
+                        <h2 style="text-align: center;">{{this.title}}</h2>
+                    </header>
+
+                    <p style="overflow: hidden; max-height: 300px;border-bottom: 1px solid black" ><img style="display: block; margin-right: auto; margin-left: auto;" src = {{image}}>
+                        {{this.content}}
+                    </p>
+
+                    <div>
+                    <small class="author">
+                        Author: {{this.User.fullName}}
+                    </small>
+
+                    <footer>
+                        <div class="pull-right">
+                            <a class="btn btn-default btn-xs" href="/article/details/{{this.id}}">Read more &raquo;</a>
+                        </div>
+                    </footer>
+                    </div>
+                </article>
+            </div>
+        {{/each}}
+    </div>
+</div>

@@ -1,0 +1,32 @@
+<div class="container body-content">
+    <div class="row">
+        <div class="col-md-12">
+            <article>
+                <small class="author">Views: {{views}}</small>
+                <header>
+                    <h2 style="text-align: center">{{title}}</h2>
+                </header>
+
+                <p>
+                    <img style="display: block; margin-right: auto; margin-left: auto;" src = {{image}}>
+                    {{content}}
+                </p>
+
+                <div>
+                    <small class="author">
+                    <label>Author: &nbsp;</label>
+                    {{this.User.fullName}}
+                    </small>
+                    <label>Date Created: &nbsp;</label>
+                    {{dateFormat date "DD, MMMM, YYYY"}}
+                </div>
+
+                <footer>
+                    <div class="pull-right">
+                        <a class="btn btn-default btn-xs" href="/">Back &raquo;</a>
+                    </div>
+                </footer>
+            </article>
+        </div>
+    </div>
+</div>

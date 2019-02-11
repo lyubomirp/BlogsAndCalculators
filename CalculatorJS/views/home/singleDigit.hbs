@@ -1,0 +1,52 @@
+<div class = "container body-content span=8 offset=2">
+    <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/">Calculator</a></li>
+            <li><a href="converter.hbs">Converter</a></li>
+        </ul>
+    </div>
+    <div class = "well">
+        <form class="form-inline" action="/singleDigit.hbs" method="POST">
+            <fieldset>
+                <div class="form-group">
+                    <div class="col-sm-1">
+                        <input type="text" class="form-control" id="leftOperand" placeholder="Left Operand"
+                               name="calculator[leftOperand]" value="{{calculator.leftOperand}}" onchange="NumCheck('leftOperand')">
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-sm-4">
+                        <select class="form-control" name="calculator[operator]">
+                            <option value="Sqrt"{{selectif calculator.operator 'Sqrt'}}>Square root</option>
+                            <option value="!"{{selectif calculator.operator '!'}}>Factorial(!)</option>
+                            <option value="loge"{{selectif calculator.operator 'loge'}}>Natural Logarithm</option>
+                            <option value="log2"{{selectif calculator.operator 'log2'}}>Base 2 Logarithm</option>
+                            <option value="log10"{{selectif calculator.operator 'log10'}}>Base 10 Logarithm</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-2">
+                        <p>=</p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="result" placeholder="Result"
+                               name="result" value="{{result}}" readonly>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-4 col-sm-offset-4">
+                        <button type="submit" class="btn btn-primary" id="resButton">Calculate</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

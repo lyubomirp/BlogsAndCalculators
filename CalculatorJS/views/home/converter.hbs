@@ -1,0 +1,97 @@
+<script>
+    function saveStates(){
+        sessionStorage.setItem('fromSelection', document.getElementById('FromSelection').value)
+        sessionStorage.setItem('toSelection', document.getElementById('ToSelection').value)
+    }
+
+    window.onload = function () {
+        document.getElementById('FromSelection').value = sessionStorage.getItem('fromSelection');
+        document.getElementById('ToSelection').value = sessionStorage.getItem('toSelection');
+    }
+</script>
+<div class="container body-content span=8 offset=2">
+    <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/">Calculator</a></li>
+            <li><a href="singleDigit.hbs">Single digit operations</a></li>
+        </ul>
+    </div>
+    <div class="well">
+        <form class="form-inline" action="/converter.hbs" method="POST">
+            <fieldset>
+
+                <div class="form-group">
+                    <div class="col-sm-1">
+                        <input type="text" class="form-control" id="leftOperand" placeholder="Left Operand"
+                               name="calculator[leftOperand]" value="{{calculator.leftOperand}}" onchange="NumCheck('leftOperand');">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-1">
+                        <label>From</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-4">
+                        <select class="form-control" name="calculator[fromOperator]" id="FromSelection">
+                            <optgroup label="Distances">
+                                <option value="fromMeter"{{selectif calculator.operator 'fromMeter'}}>Metre</option>
+                                <option value="fromFoot"{{selectif calculator.operator 'fromFoot'}}>Foot</option>
+                                <option value="fromInch"{{selectif calculator.operator 'fromInch'}}>Inch</option>
+                            </optgroup>
+                            <optgroup label="Weights">
+                                <option value="fromKilogram"{{selectif calculator.operator 'fromKilogram'}}>Kilogram</option>
+                                <option value="fromStone"{{selectif calculator.operator 'fromStone'}}>Stone</option>
+                                <option value="fromOunce"{{selectif calculator.operator 'fromOunce'}}>Ounce</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-1">
+                        <label>To</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-4">
+                        <select class="form-control" name="calculator[toOperator]" id="ToSelection">
+                            <optgroup label="Distances">
+                                <option value="toMeter"{{selectif calculator.operator 'toMeter'}}>Metre</option>
+                                <option value="toFoot"{{selectif calculator.operator 'toFoot'}}>Foot</option>
+                                <option value="toInch"{{selectif calculator.operator 'toInch'}}>Inch</option>
+                            </optgroup>
+                            <optgroup label="Weights">
+                                <option value="toKilogram"{{selectif calculator.operator 'toKilogram'}}>Kilogram</option>
+                                <option value="toStone"{{selectif calculator.operator 'toStone'}}>Stone</option>
+                                <option value="toOunce"{{selectif calculator.operator 'toOunce'}}>Ounce</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-2">
+                        <p>=</p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="result" placeholder="Result"
+                               name="result" value="{{result}}" readonly>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-4 col-sm-offset-4">
+                        <button type="submit" class="btn btn-primary" id="resButton" onfocus="saveStates()">Calculate</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

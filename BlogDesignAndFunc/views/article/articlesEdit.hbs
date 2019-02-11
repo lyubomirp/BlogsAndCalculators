@@ -1,0 +1,31 @@
+<div class="container body-content">
+    <h1 style="text-align: center;">{{this.user.fullName}}'s Articles</h1>
+    <div class="row">
+        {{#each articles}}
+            <div class="col-md-6">
+                <article>
+                    <header>
+                        <h2 style="text-align: center">{{this.title}}</h2>
+                    </header>
+
+                    <p style="overflow: hidden; max-height: 300px"><img style="display: block; margin-right: auto; margin-left: auto;" src = {{image}}>
+                        {{this.content}}
+                    </p>
+
+                    <small class="author">
+                        {{this.User.fullName}}
+                    </small>
+
+                    <footer>
+                        <div class="pull-right">
+                            <a class="btn btn-default btn-xs" href="/article/edit/{{this.id}}">Edit</a>
+                        </div>
+                        <div class="pull-left">
+                            <a class="btn btn-default btn-xs" href="/article/postDelete/{{this.id}}">Delete</a>
+                        </div>
+                    </footer>
+                </article>
+            </div>
+        {{/each}}
+    </div>
+</div>

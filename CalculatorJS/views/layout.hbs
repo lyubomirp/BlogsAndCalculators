@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculator</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="/javascripts/jquery-3.3.1.js"></script>
+    <script src="/javascripts/bootstrap.js"></script>
+    <script>
+        function NumCheck(elementID) {
+            let text = document.getElementById(elementID).value;
+            let doc = document.getElementById(elementID);
+            let resultKey = document.getElementById("resButton");
+
+            if (isNaN(Number(text))){
+                doc.style.border = "2px solid red";
+                resultKey.disabled = "disabled";
+            } else {
+                doc.style.border = "2px solid #dce4ec";
+                resultKey.disabled = false;
+            }
+        }
+        
+        function lastCheckForIndex() {
+            let text = document.getElementById('leftOperand').value;
+            let text2 = document.getElementById('rightOperand').value;
+            let leftOperandDoc = document.getElementById("leftOperand");
+            let rightOperandDoc = document.getElementById("rightOperand");
+            let resultKey = document.getElementById("resButton");
+            
+
+                if (isNaN(Number(text))) {
+                    leftOperandDoc.style.border = "2px solid red";
+                    resultKey.disabled = "disabled";
+                } else if (isNaN(Number(text2))){
+                    rightOperandDoc.style.border = "2px solid red";
+                    resultKey.disabled = "disabled";
+                } else {
+                    leftOperandDoc.style.border = "2px solid #dce4ec";
+                    rightOperandDoc.style.border = "2px solid #dce4ec";
+                    resultKey.disabled = false;
+                }
+        }
+    </script>
+</head>
+<body>
+<header>
+    <div class="navbar navbar-default navbar-fixed-top text-uppercase">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="/" class="navbar-brand">Calculator</a>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
+{{#if error }}
+    <h2>{{error}}</h2>
+{{/if}}
+{{{body}}}
+</body>
+<footer>
+    <div class="container modal-footer">
+        <p>&copy; 2018 - Software University Foundation</p>
+    </div>
+</footer>
+</html>

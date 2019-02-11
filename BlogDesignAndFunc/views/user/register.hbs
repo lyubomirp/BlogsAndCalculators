@@ -1,0 +1,85 @@
+<script>
+    function inputChecker(){
+        let res = true;
+        let input = document.getElementById('inputMail').value;
+        let input2 = document.getElementById('inputFullName').value;
+
+        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(input)){
+            document.getElementById('inputMail').style.border="2px solid #dce4ec";
+        } else if (input !== "")
+        {
+            document.getElementById('inputMail').style.border="2px solid red";
+        } else if (input === ""){
+            document.getElementById('inputMail').style.border="2px solid #dce4ec";
+        }
+
+        if (/(([A-Z])([a-z])+)\ (([A-Z])([a-z])+)/.test(input2)){
+            document.getElementById('inputFullName').style.border="2px solid #dce4ec";
+        } else if (input2 !== "")
+        {
+            document.getElementById('inputFullName').style.border="2px solid red";
+        } else if (input2 === ""){
+            document.getElementById('inputFullName').style.border="2px solid #dce4ec";
+        }
+
+        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(input) && /(([A-Z])([a-z])+)\ (([A-Z])([a-z])+)/.test(input2)){
+            res = true;
+        } else {
+            res = false;
+        }
+
+        if (res===true || (input === "" && input2 === "")){
+            document.getElementById('submitBTN').disabled = false;
+
+        } else {
+            document.getElementById('submitBTN').disabled = true;
+        }
+
+    }
+</script>
+<div class="container body-content span=8 offset=2">
+    <div class="well">
+        <form class="form-horizontal" method="post" action="/user/register">
+            <fieldset>
+                <legend>Register</legend>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="inputEmail">Email</label>
+                    <div class="col-sm-4 ">
+                        <input id="inputMail" onfocusout="inputChecker()" type="text" class="form-control" id="inputEmail" placeholder="Email"
+                               name="email" required value={{email}} >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="inputFullName">Full Name</label>
+                    <div class="col-sm-4 ">
+                        <input type="text" onfocusout="inputChecker();" class="form-control" id="inputFullName" placeholder="Full Name" required name="fullName" value={{fullName}}>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="inputPassword">Password</label>
+                    <div class="col-sm-4">
+                        <input type="password" class="form-control" id="inputPassword" placeholder="Password" required name="password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">Confirm Password</label>
+                    <div class="col-sm-4">
+                        <input type="password" class="form-control" id="inputPassword" placeholder="Confirm Password" required name="repeatedPassword">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="profilePicture">Profile picture URL</label>
+                    <div class="col-sm-4 ">
+                        <input type="text" class="form-control" id="profilePicture" name="profilePic" value={{profilePic}}>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-4 col-sm-offset-4">
+                        <button type="reset"  onmouseover="inputChecker();" onmouseout="inputChecker();" class="btn btn-default">Cancel</button>
+                        <button type="submit" class="btn btn-primary" id="submitBTN">Submit</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
